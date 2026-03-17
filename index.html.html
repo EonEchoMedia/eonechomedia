@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eon Echo Media: Crafting Narratives. Building Legacies.</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='11' y='1' width='10' height='6' rx='2.5' fill='%234a7a5e'/%3E%3Cpath d='M11 6 L11 17 L16 22 L21 17 L21 6 Z' fill='%237aab8a'/%3E%3Ccircle cx='16' cy='22' r='1.8' fill='%234a7a5e'/%3E%3Cpath d='M4 29 Q10 32 16 29 Q22 26 27 28 Q30 29 29 26' fill='none' stroke='%237aab8a' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2c3a2e;
+    --cream: #faf8f4;
+    --coral: #c9817a;
+    --amber: #c8956a;
+    --teal: #6aab8e;
+    --violet: #8e7b6e;
+    --sky: #a3c4b5;
+    --off: #ede8e0;
+    --rose: #d4917f;
+    --sage: #7aab8a;
+    --sage-light: #c8ddd0;
+    --sage-dark: #4a7a5e;
+    --dusty-rose: #c98b8b;
+    --ivory: #f7f3ec;
+    --charcoal: #3a4a3c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+    cursor: none;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--dusty-rose);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 2px solid var(--dusty-rose);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.3s ease;
+    mix-blend-mode: multiply;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 1.2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,248,244,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(10,10,15,0.08);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .logo span { color: var(--sage-dark); }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 2px;
+    background: var(--sage-dark);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--sage-dark); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--charcoal);
+    color: var(--cream) !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 100px;
+    font-weight: 500 !important;
+    transition: background 0.3s ease !important;
+  }
+  .nav-cta:hover { background: var(--sage-dark) !important; color: var(--cream) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* SECTIONS */
+  section { display: none; }
+  section.active { display: block; }
+
+  /* ========== HOME ========== */
+  #home {
+    min-height: 100vh;
+    padding-top: 80px;
+  }
+
+  .hero {
+    min-height: calc(100vh - 80px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--sage-light);
+    color: var(--charcoal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    width: fit-content;
+    animation: fadeSlideUp 0.8s ease forwards;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.8rem;
+    animation: fadeSlideUp 0.8s 0.15s ease both;
+  }
+
+  .hero-title .accent { color: var(--dusty-rose); }
+  .hero-title .accent-teal { color: var(--sage); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: #4a4a5a;
+    max-width: 480px;
+    margin-bottom: 3rem;
+    animation: fadeSlideUp 0.8s 0.3s ease both;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeSlideUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: var(--sage-dark);
+    color: var(--cream);
+    padding: 1rem 2.2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(74,122,94,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(74,122,94,0.4);
+    background: var(--teal);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    padding: 1rem 2.2rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 2px solid var(--charcoal);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover {
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-blob {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: linear-gradient(135deg, var(--sage-light) 0%, var(--dusty-rose) 50%, var(--sage) 100%);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morphBlob 8s ease-in-out infinite;
+    opacity: 0.85;
+  }
+
+  @keyframes morphBlob {
+    0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg); }
+    33% { border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%; transform: rotate(120deg); }
+    66% { border-radius: 70% 30% 50% 50% / 40% 60% 40% 60%; transform: rotate(240deg); }
+  }
+
+  .hero-card-float {
+    position: absolute;
+    background: rgba(250,247,242,0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1rem 1.4rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    animation: float 4s ease-in-out infinite;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 3;
+  }
+
+  .hero-card-float:nth-child(2) {
+    top: 20%; left: 5%;
+    animation-delay: 0s;
+  }
+  .hero-card-float:nth-child(3) {
+    bottom: 20%; right: 5%;
+    animation-delay: 2s;
+  }
+  .hero-card-float:nth-child(4) {
+    top: 55%; left: 10%;
+    animation-delay: 1s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  .card-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
+
+  .hero-stats {
+    display: flex; gap: 3rem;
+    padding: 3rem 5rem;
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+
+  .stat-item { flex: 1; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--sage-light);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(250,247,242,0.6);
+    margin-top: 0.4rem;
+    font-weight: 300;
+  }
+
+  /* Marquee */
+  .marquee-wrap {
+    background: var(--sage);
+    overflow: hidden;
+    padding: 1rem 0;
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: 0 2.5rem;
+    white-space: nowrap;
+  }
+  .marquee-sep { color: rgba(44,58,46,0.4); }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Why us */
+  .why-section {
+    padding: 7rem 5rem;
+  }
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 2px;
+    background: var(--sage-dark);
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    color: #666;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 540px;
+    font-weight: 300;
+    margin-bottom: 4rem;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .why-card {
+    padding: 2.5rem;
+    border-radius: 20px;
+    background: var(--off);
+    border: 1px solid rgba(10,10,15,0.07);
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+  .why-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--dusty-rose);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .why-card:hover::before { transform: scaleX(1); }
+  .why-card:nth-child(2)::before { background: var(--sage); }
+  .why-card:nth-child(3)::before { background: var(--amber); }
+  .why-card:nth-child(4)::before { background: var(--sage-dark); }
+  .why-card:nth-child(5)::before { background: var(--sky); }
+  .why-card:nth-child(6)::before { background: var(--sage); }
+
+  .why-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .why-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+  }
+  .why-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #666;
+    font-weight: 300;
+  }
+
+  /* Industries */
+  .industries-section {
+    padding: 5rem 5rem;
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+
+  .industry-pills {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    margin-top: 3rem;
+  }
+  .pill {
+    padding: 0.7rem 1.5rem;
+    border: 1px solid rgba(250,247,242,0.2);
+    border-radius: 100px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: default;
+    color: rgba(250,247,242,0.8);
+  }
+  .pill:hover {
+    background: var(--coral);
+    border-color: var(--coral);
+    color: white;
+    transform: scale(1.05);
+  }
+  .pill.highlight { background: var(--dusty-rose); border-color: var(--dusty-rose); color: white; font-weight: 600; }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--dusty-rose) 0%, var(--sage) 100%);
+    padding: 6rem 5rem;
+    text-align: center;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: 'EON ECHO';
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-size: 12rem;
+    font-weight: 800;
+    color: rgba(44,58,46,0.07);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .cta-banner h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    position: relative;
+    color: var(--ink);
+  }
+  .cta-banner p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.75;
+    font-weight: 300;
+    position: relative;
+    color: var(--ink);
+  }
+  .btn-white {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 1rem 2.5rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(44,58,46,0.2); }
+
+  /* ========== ABOUT ========== */
+  #about { padding-top: 80px; min-height: 100vh; }
+
+  .about-hero {
+    padding: 6rem 5rem;
+    background: var(--charcoal);
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-hero p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(250,247,242,0.7);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-launch-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--sage-light);
+    color: var(--ink);
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  .about-visual {
+    position: relative;
+    height: 400px;
+  }
+
+  .about-card {
+    position: absolute;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .about-card:nth-child(1) { top: 0; left: 0; width: 55%; }
+  .about-card:nth-child(2) { bottom: 0; right: 0; width: 55%; }
+  .about-card:nth-child(3) { top: 30%; left: 25%; width: 55%; }
+
+  .about-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--sage-light);
+  }
+  .about-card p { font-size: 0.85rem; color: rgba(250,247,242,0.7); font-weight: 300; }
+
+  .mission-section {
+    padding: 7rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .mission-section h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+  .mission-section p { font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 1rem; font-weight: 300; }
+
+  .values-list { list-style: none; margin-top: 1rem; }
+  .values-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(10,10,15,0.08);
+  }
+  .val-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .val-text strong { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; display: block; margin-bottom: 0.2rem; }
+  .val-text span { font-size: 0.88rem; color: #666; font-weight: 300; }
+
+  .founder-section {
+    padding: 5rem;
+    background: var(--off);
+  }
+  .founder-section h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 3rem; }
+
+  .founder-card {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    display: flex; gap: 2rem; align-items: flex-start;
+  }
+
+  .founder-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dusty-rose), var(--sage));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .founder-info h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .founder-info .role { color: var(--sage-dark); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem; }
+  .founder-info p { font-size: 0.9rem; line-height: 1.7; color: #666; font-weight: 300; }
+
+  /* ========== SERVICES ========== */
+  #services { padding-top: 80px; min-height: 100vh; }
+
+  .services-hero {
+    padding: 6rem 5rem 4rem;
+    background: linear-gradient(135deg, var(--sage-light) 0%, var(--dusty-rose) 100%);
+    color: var(--charcoal);
+    text-align: center;
+  }
+  .services-hero h1 { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; color: var(--charcoal); }
+  .services-hero p { font-size: 1.1rem; opacity: 0.75; max-width: 540px; margin: 0 auto; font-weight: 300; }
+
+  .services-grid {
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: white;
+    border: 1px solid rgba(10,10,15,0.08);
+    border-radius: 24px;
+    padding: 3rem;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 30px 70px rgba(0,0,0,0.12); }
+
+  .service-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    opacity: 0.07;
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    line-height: 1;
+  }
+
+  .service-tag {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag-coral { background: rgba(201,129,122,0.15); color: #8a4e48; }
+  .tag-teal { background: rgba(106,171,142,0.15); color: var(--sage-dark); }
+  .tag-amber { background: rgba(247,212,158,0.25); color: #b37400; }
+  .tag-violet { background: rgba(142,123,110,0.15); color: #5c4e44; }
+  .tag-sky { background: rgba(163,196,181,0.2); color: #3a6b54; }
+  .tag-ink { background: rgba(44,58,46,0.08); color: var(--charcoal); }
+
+  .service-icon { font-size: 2rem; margin-bottom: 1.2rem; display: block; }
+  .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.8rem; }
+  .service-card > p { font-size: 0.92rem; line-height: 1.7; color: #666; margin-bottom: 1.5rem; font-weight: 300; }
+
+  .service-includes {
+    list-style: none;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .service-includes li {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    background: var(--off);
+    border-radius: 100px;
+    font-weight: 500;
+    color: #555;
+  }
+
+  .live-banner {
+    background: var(--charcoal);
+    padding: 3.5rem 5rem;
+    border-top: 1px solid rgba(200,221,208,0.1);
+  }
+  .live-banner-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .live-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(122,171,138,0.15);
+    border: 1px solid rgba(122,171,138,0.3);
+    color: var(--sage-light);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .live-dot {
+    width: 8px; height: 8px;
+    background: var(--sage);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .live-banner-inner > p {
+    font-size: 1rem;
+    color: rgba(250,248,244,0.55);
+    font-weight: 300;
+    margin: 0;
+  }
+  .live-services {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .live-service-pill {
+    background: rgba(122,171,138,0.12);
+    border: 1.5px solid rgba(122,171,138,0.3);
+    color: var(--sage-light);
+    padding: 0.65rem 1.4rem;
+    border-radius: 100px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .live-cta {
+    background: var(--sage-dark);
+    color: var(--cream);
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.3s ease;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .live-cta:hover { background: var(--sage); transform: translateY(-2px); }
+
+  
+    padding: 5rem;
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .step {
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    top: 1.2rem;
+    right: -1rem;
+    color: var(--sage-light);
+    font-size: 1.5rem;
+  }
+
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--dusty-rose);
+    opacity: 0.7;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+  .step h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .step p { font-size: 0.88rem; line-height: 1.6; color: rgba(250,247,242,0.6); font-weight: 300; }
+
+  /* ========== PRICING ========== */
+  #pricing { padding-top: 80px; min-height: 100vh; }
+
+  .pricing-hero {
+    padding: 5rem 5rem 3rem;
+    text-align: center;
+  }
+
+  .pricing-hero h1 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .pricing-hero p { font-size: 1.05rem; color: #666; max-width: 480px; margin: 0 auto; font-weight: 300; }
+
+  .pricing-grid {
+    padding: 3rem 5rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .pricing-card {
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 2px solid transparent;
+    transition: all 0.35s ease;
+    position: relative;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  .pricing-card.featured {
+    background: var(--charcoal);
+    color: var(--cream);
+    transform: scale(1.04);
+    border-color: var(--sage);
+    box-shadow: 0 20px 60px rgba(106,171,142,0.25);
+  }
+
+  .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+  .pricing-card.featured:hover { transform: scale(1.04) translateY(-6px); }
+
+  .featured-badge {
+    position: absolute;
+    top: -14px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--dusty-rose);
+    color: white;
+    padding: 0.35rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: var(--sage-dark);
+  }
+  .pricing-card.featured .plan-name { color: var(--sage-light); }
+
+  .plan-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .plan-price-note { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; font-weight: 300; }
+  .pricing-card.featured .plan-price-note { color: rgba(250,247,242,0.5); }
+
+  .plan-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(10,10,15,0.08);
+    font-weight: 300;
+  }
+  .pricing-card.featured .plan-desc { color: rgba(250,247,242,0.7); border-color: rgba(250,247,242,0.1); }
+
+  .plan-features { list-style: none; margin-bottom: 2rem; }
+  .plan-features li {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    font-size: 0.88rem;
+    padding: 0.5rem 0;
+    color: #555;
+    font-weight: 300;
+  }
+  .pricing-card.featured .plan-features li { color: rgba(250,247,242,0.8); }
+  .plan-features li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
+
+  .btn-plan {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    border: 2px solid var(--charcoal);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+  }
+  .btn-plan:hover { background: var(--charcoal); color: var(--cream); }
+  .btn-plan-featured {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    border: none;
+    background: var(--sage);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: block;
+  }
+  .btn-plan-featured:hover { background: var(--sage-dark); }
+
+  .pricing-note {
+    background: var(--off);
+    padding: 3rem 5rem;
+    text-align: center;
+  }
+  .pricing-note h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .pricing-note p { font-size: 0.9rem; color: #666; font-weight: 300; }
+
+  /* ========== PORTFOLIO ========== */
+  #portfolio { padding-top: 80px; min-height: 100vh; }
+
+  .portfolio-hero {
+    padding: 6rem 5rem 4rem;
+    background: linear-gradient(135deg, var(--sky) 0%, var(--sage-light) 100%);
+    color: var(--charcoal);
+  }
+  .portfolio-hero h1 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; color: var(--ink); }
+  .portfolio-hero p { font-size: 1.05rem; opacity: 0.7; max-width: 540px; font-weight: 300; }
+
+  .portfolio-filter {
+    padding: 2.5rem 5rem 0;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    border: 2px solid rgba(10,10,15,0.15);
+    background: transparent;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    color: #555;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+
+  .portfolio-grid {
+    padding: 3rem 5rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .portfolio-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: all 0.35s ease;
+  }
+  .portfolio-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+
+  .pc-thumb {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pc-body { padding: 1.8rem; }
+  .pc-industry {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .pc-body h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .pc-body p { font-size: 0.85rem; line-height: 1.6; color: #666; margin-bottom: 1rem; font-weight: 300; }
+
+  .pc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .pc-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.7rem;
+    background: var(--off);
+    border-radius: 100px;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .portfolio-cta {
+    padding: 5rem;
+    background: var(--charcoal);
+    color: var(--cream);
+    text-align: center;
+  }
+  .portfolio-cta h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.8rem; }
+  .portfolio-cta p { color: rgba(253,251,248,0.6); margin-bottom: 2rem; font-weight: 300; }
+
+  /* ========== BLOG ========== */
+  #blog { padding-top: 80px; min-height: 100vh; }
+
+  .blog-hero {
+    padding: 5rem 5rem 4rem;
+    background: var(--sage-light);
+    color: var(--charcoal);
+  }
+  .blog-hero h1 { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; color: var(--ink); }
+  .blog-hero p { font-size: 1.05rem; opacity: 0.7; font-weight: 300; }
+
+  .blog-featured {
+    padding: 4rem 5rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    border-bottom: 1px solid rgba(10,10,15,0.08);
+  }
+
+  .blog-feat-thumb {
+    height: 350px;
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+    background: linear-gradient(135deg, var(--dusty-rose) 0%, var(--sage) 100%);
+  }
+
+  .blog-cat {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 0.8rem;
+  }
+
+  .blog-feat-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .blog-feat-excerpt { font-size: 0.95rem; line-height: 1.7; color: #555; margin-bottom: 1.5rem; font-weight: 300; }
+
+  .blog-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+  .blog-meta strong { color: var(--ink); font-weight: 600; }
+
+  .btn-read {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--sage-dark);
+    text-decoration: none;
+    border-bottom: 2px solid var(--sage-dark);
+    padding-bottom: 2px;
+    transition: gap 0.3s;
+    cursor: pointer;
+    background: none; border-left: none; border-right: none; border-top: none;
+  }
+  .btn-read:hover { gap: 0.8rem; }
+
+  .blog-grid {
+    padding: 4rem 5rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .blog-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(10,10,15,0.08);
+    transition: all 0.3s ease;
+    background: white;
+  }
+  .blog-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+
+  .blog-thumb {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.6rem;
+  }
+
+  .blog-card-body { padding: 1.5rem; }
+  .blog-card-body .blog-cat { margin-bottom: 0.6rem; }
+  .blog-card-body h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+  .blog-card-body p { font-size: 0.83rem; line-height: 1.6; color: #666; margin-bottom: 1rem; font-weight: 300; }
+  .blog-card-meta { font-size: 0.78rem; color: #aaa; }
+
+  /* ========== CONTACT ========== */
+  #contact { padding-top: 80px; min-height: 100vh; }
+
+  .contact-hero {
+    padding: 5rem 5rem 4rem;
+    background: linear-gradient(135deg, var(--dusty-rose) 0%, var(--sage) 100%);
+    color: var(--charcoal);
+    text-align: center;
+  }
+  .contact-hero h1 { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; color: var(--ink); }
+  .contact-hero p { font-size: 1.05rem; opacity: 0.7; font-weight: 300; max-width: 480px; margin: 0 auto; }
+
+  .contact-body {
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
+  .contact-info p { font-size: 0.95rem; line-height: 1.7; color: #555; margin-bottom: 2rem; font-weight: 300; }
+
+  .contact-details { list-style: none; }
+  .contact-details li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(10,10,15,0.06);
+    font-size: 0.9rem;
+  }
+  .contact-details li:last-child { border-bottom: none; }
+  .det-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .det-text strong { display: block; font-weight: 600; margin-bottom: 0.2rem; }
+  .det-text span { color: #666; font-weight: 300; }
+
+  .contact-form {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+  }
+
+  .contact-form h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem; letter-spacing: 0.03em; }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    border: 2px solid rgba(10,10,15,0.1);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.25s;
+    outline: none;
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--sage); }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--sage-dark);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-submit:hover { background: var(--teal); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(74,122,94,0.3); }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 5rem 5rem 2rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(250,247,242,0.1);
+  }
+
+  .footer-brand .logo { color: var(--cream); font-size: 1.6rem; }
+  .footer-brand .logo span { color: var(--sage-dark); }
+  .footer-brand p { margin-top: 1rem; font-size: 0.88rem; line-height: 1.7; color: rgba(250,247,242,0.5); font-weight: 300; }
+
+  .footer-launch {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.5rem;
+    background: rgba(247,212,158,0.15);
+    border: 1px solid rgba(247,212,158,0.3);
+    color: var(--sage-light);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .footer-col h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.8rem; }
+  .footer-col ul li a {
+    color: rgba(250,247,242,0.5);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 300;
+    transition: color 0.25s;
+    cursor: pointer;
+    background: none; border: none; padding: 0;
+  }
+  .footer-col ul li a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 0.82rem; color: rgba(253,251,248,0.35); }
+
+  .social-links { display: flex; gap: 1rem; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(250,247,242,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: rgba(250,247,242,0.5);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .social-link:hover { border-color: var(--sage-light); color: var(--sage-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive simplification */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 350px; }
+    .hero-left { padding: 3rem 2rem; }
+    .hero-stats { flex-direction: column; gap: 2rem; padding: 3rem 2rem; }
+    .why-section, .industries-section, .cta-banner,
+    .services-hero, .services-grid, .service-process,
+    .pricing-hero, .pricing-grid, .pricing-note,
+    .portfolio-hero, .portfolio-filter, .portfolio-grid, .portfolio-cta,
+    .blog-hero, .blog-featured, .blog-grid,
+    .contact-hero, .contact-body,
+    .mission-section, .about-hero, .founder-section,
+    .about-diff, .about-pullquote, .expertise-strip,
+    footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .why-grid, .services-grid, .portfolio-grid, .blog-grid, .diff-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card.featured { transform: none; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .blog-featured { grid-template-columns: 1fr; }
+    .contact-body { grid-template-columns: 1fr; }
+    .mission-section { grid-template-columns: 1fr; gap: 3rem; }
+    .about-hero { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ABOUT DIFFERENTIATORS */
+  .about-diff {
+    padding: 5rem;
+    background: var(--ivory);
+    border-top: 1px solid rgba(44,58,46,0.07);
+    border-bottom: 1px solid rgba(44,58,46,0.07);
+  }
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .diff-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid rgba(44,58,46,0.07);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .diff-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(44,58,46,0.08); }
+  .diff-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sage), var(--dusty-rose));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .diff-card:hover::after { transform: scaleX(1); }
+  .diff-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--sage-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .diff-card h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.7rem; color: var(--charcoal); }
+  .diff-card p { font-size: 0.9rem; line-height: 1.7; color: #666; font-weight: 300; }
+
+  /* ABOUT STORY PULL QUOTE */
+  .about-pullquote {
+    padding: 5rem;
+    background: var(--charcoal);
+    color: var(--cream);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-pullquote::before {
+    content: '"';
+    font-family: 'Syne', sans-serif;
+    font-size: 20rem;
+    line-height: 0.8;
+    color: rgba(200,221,208,0.06);
+    position: absolute;
+    top: 0; left: 3rem;
+    pointer-events: none;
+  }
+  .about-pullquote blockquote {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.4;
+    max-width: 780px;
+    margin: 0 auto 1.5rem;
+    letter-spacing: -0.01em;
+    position: relative;
+  }
+  .about-pullquote cite {
+    font-size: 0.85rem;
+    color: var(--sage-light);
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* EXPERTISE STRIP */
+  .expertise-strip {
+    padding: 4rem 5rem;
+    background: var(--cream);
+  }
+  .expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  .exp-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.3rem;
+    border-radius: 100px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border: 1.5px solid rgba(44,58,46,0.15);
+    color: var(--charcoal);
+    transition: all 0.25s ease;
+  }
+  .exp-tag:hover { background: var(--sage-light); border-color: var(--sage); }
+  .exp-tag span { font-size: 1rem; }
+
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a onclick="showSection('home')" style="cursor:pointer;display:flex;align-items:center;gap:0.6rem;text-decoration:none">
+    <svg width="28" height="32" viewBox="0 0 28 32" style="flex-shrink:0">
+      <rect x="9" y="1" width="10" height="6" rx="2.5" fill="var(--sage-dark)"/>
+      <path d="M9 6 L9 18 L14 24 L19 18 L19 6 Z" fill="var(--sage)"/>
+      <line x1="14" y1="11" x2="14" y2="24" stroke="var(--charcoal)" stroke-width="1" stroke-opacity="0.35"/>
+      <circle cx="14" cy="24" r="2" fill="var(--sage-dark)"/>
+      <path d="M3 29 Q8 32 14 29 Q20 26 24 28 Q27 29 26 26" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <div style="display:flex;align-items:baseline;gap:2px">
+      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--ink);letter-spacing:-0.02em">Eon</span>
+      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--sage-dark);letter-spacing:-0.02em">Echo</span>
+      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--sage);letter-spacing:-0.02em">Media</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="showSection('home')" style="cursor:pointer">Home</a></li>
+    <li><a onclick="showSection('about')" style="cursor:pointer">About</a></li>
+    <li><a onclick="showSection('services')" style="cursor:pointer">Services</a></li>
+    <li><a onclick="showSection('pricing')" style="cursor:pointer">Pricing</a></li>
+    <li><a onclick="showSection('portfolio')" style="cursor:pointer">Work</a></li>
+    <li><a onclick="showSection('blog')" style="cursor:pointer">Blog</a></li>
+    <li><a onclick="showSection('contact')" class="nav-cta" style="cursor:pointer">Get Started</a></li>
+  </ul>
+</nav>
+
+
+<!-- ============ HOME ============ -->
+<section id="home" class="active">
+  <div class="hero">
+    <div class="hero-left">
+      <span class="hero-badge">📍 Based in Navi Mumbai · Serving Brands Globally</span>
+      <h1 class="hero-title">
+        Crafting<br>
+        <span class="accent">Narratives.</span><br>
+        Building<br>
+        <span class="accent-teal">Legacies.</span>
+      </h1>
+      <p class="hero-sub">Words that work. Strategy that sticks. Content built for brands that mean business.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" onclick="showSection('services')" style="cursor:pointer">Explore Services →</a>
+        <a class="btn-secondary" onclick="showSection('portfolio')" style="cursor:pointer">See Our Work</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-blob"></div>
+      <div class="hero-card-float">
+        <div class="card-icon">✍️</div>
+        <div>Long-form Content</div>
+        <div style="font-size:0.75rem;color:#888;font-weight:400">Articles · Whitepapers · Ebooks</div>
+      </div>
+      <div class="hero-card-float">
+        <div class="card-icon">📣</div>
+        <div>Brand Storytelling</div>
+        <div style="font-size:0.75rem;color:#888;font-weight:400">Voice · Strategy · Identity</div>
+      </div>
+      <div class="hero-card-float">
+        <div class="card-icon">📈</div>
+        <div>SEO & Growth</div>
+        <div style="font-size:0.75rem;color:#888;font-weight:400">Organic Traffic · Rankings</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Blog Writing</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">SEO Content</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Social Media</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Whitepapers</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Email Marketing</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Brand Voice</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Video Scripts</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Case Studies</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Tech Writing</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Blog Writing</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">SEO Content</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Social Media</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Whitepapers</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Email Marketing</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Brand Voice</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Video Scripts</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Case Studies</span><span class="marquee-item marquee-sep">◆</span>
+      <span class="marquee-item">Tech Writing</span><span class="marquee-item marquee-sep">◆</span>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">12+</span>
+      <span class="stat-label">Industries Served</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Ideas. Zero Creative Limits.</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">6</span>
+      <span class="stat-label">Core Content Offerings</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Mission: Your Growth</span>
+    </div>
+  </div>
+
+  <div class="why-section">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">Content That Goes<br>Beyond the Brief</h2>
+    <p class="section-sub">We think, research, and strategise before we write. Every word earns its place.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-icon">🎯</span>
+        <h3>Strategy First</h3>
+        <p>No brief leaves without a clear goal. Every piece is anchored in audience insight and business objectives.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🏭</span>
+        <h3>Industry Specialists</h3>
+        <p>From fintech to fashion, healthcare to hospitality. Deep domain knowledge in every deliverable.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">⚡</span>
+        <h3>Scales With You</h3>
+        <p>One article or a hundred. We match your pace without bloated retainers or wasted bandwidth.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🔍</span>
+        <h3>SEO Built In</h3>
+        <p>Beautiful prose, technical precision. We write for people and optimise for algorithms simultaneously.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🤝</span>
+        <h3>True Partnership</h3>
+        <p>We embed with your team. Learn your tone. Act like an in-house desk, without the overhead.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">📊</span>
+        <h3>Measurable Results</h3>
+        <p>Traffic, leads, conversions. Every engagement is tied to KPIs so you always know what you're getting back.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="industries-section">
+    <div class="section-label" style="color:var(--sage-light)">Industries We Cover</div>
+    <h2 class="section-title" style="color:var(--cream)">Your Industry.<br>Our Expertise.</h2>
+    <div class="industry-pills">
+      <span class="pill highlight">Technology & SaaS</span>
+      <span class="pill">Healthcare & Wellness</span>
+      <span class="pill">Finance & Fintech</span>
+      <span class="pill">E-Commerce & Retail</span>
+      <span class="pill">Real Estate</span>
+      <span class="pill">Education & EdTech</span>
+      <span class="pill">Travel & Hospitality</span>
+      <span class="pill">Legal & Compliance</span>
+      <span class="pill">Fashion & Lifestyle</span>
+      <span class="pill">Automotive</span>
+      <span class="pill">Food & Beverage</span>
+      <span class="pill">Manufacturing & B2B</span>
+    </div>
+  </div>
+
+  <div class="cta-banner">
+    <h2>Ready to Echo Your Story?</h2>
+    <p>Great content compounds. The sooner you start, the louder it gets.</p>
+    <a class="btn-white" onclick="showSection('contact')" style="cursor:pointer">Start a Conversation →</a>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+
+  <div class="about-hero">
+    <div>
+      <div class="about-launch-badge">📍 Navi Mumbai, Maharashtra</div>
+      <h1>We Started With One Belief: Great Content Changes Everything.</h1>
+      <p>Eon Echo Media was built by people who live at the intersection of words and business. Journalists. Digital marketers. Brand strategists. Each one brought a different lens. Together, we built something sharper.</p>
+      <p>Not another content agency. A content partner that thinks before it writes, researches before it strategises, and measures what matters.</p>
+      <a class="btn-primary" onclick="showSection('services')" style="cursor:pointer">See What We Create →</a>
+    </div>
+    <div class="about-visual">
+      <div class="about-card">
+        <h4>Our Name</h4>
+        <p>"Eon" is timeless. "Echo" reverberates. Together: content that outlasts the moment it was made.</p>
+      </div>
+      <div class="about-card" style="top:35%;left:20%">
+        <h4>Our Expertise</h4>
+        <p>Journalism. SEO. Brand strategy. Social media. Corporate communications. Five disciplines, one voice.</p>
+      </div>
+      <div class="about-card">
+        <h4>Our Reach</h4>
+        <p>Based in Navi Mumbai. Remote-first. Serving businesses of all sizes across India and beyond.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-pullquote">
+    <blockquote>We're not here to produce content. We're here to build the engine that drives your business forward, one well-researched, expertly crafted piece at a time.</blockquote>
+    <cite>Eon Echo Media</cite>
+  </div>
+
+  <div class="mission-section">
+    <div>
+      <div class="section-label">Our Mission</div>
+      <h2>To Be the Content Partner Every Brand Deserves.</h2>
+      <p>Big brands. Growing brands. Brands just finding their voice. We believe every business deserves content that's rigorous, researched, and built for the long game.</p>
+      <p>We measure our success by yours. Traffic earned. Leads generated. Brands transformed from unknown to unmissable.</p>
+    </div>
+    <div>
+      <div class="section-label">Our Values</div>
+      <h2>Four Things We Will Never Compromise On</h2>
+      <ul class="values-list">
+        <li>
+          <div class="val-icon" style="background:rgba(201,129,122,0.15);color:var(--dusty-rose)">✦</div>
+          <div class="val-text">
+            <strong>Research Before Writing</strong>
+            <span>We understand your sector, your competitors, your audience, before a single word is drafted.</span>
+          </div>
+        </li>
+        <li>
+          <div class="val-icon" style="background:rgba(106,171,142,0.15);color:var(--sage-dark)">◈</div>
+          <div class="val-text">
+            <strong>Strategy Before Execution</strong>
+            <span>Every piece is tied to a clear objective. Awareness, authority, leads, loyalty. Not just words on a page.</span>
+          </div>
+        </li>
+        <li>
+          <div class="val-icon" style="background:rgba(200,149,106,0.15);color:var(--amber)">◆</div>
+          <div class="val-text">
+            <strong>Specialists, Not Generalists</strong>
+            <span>Your fintech brief goes to a fintech writer. Your healthcare content to a healthcare specialist. Always.</span>
+          </div>
+        </li>
+        <li>
+          <div class="val-icon" style="background:rgba(122,171,138,0.15);color:var(--sage-dark)">◉</div>
+          <div class="val-text">
+            <strong>Long-Term Thinking</strong>
+            <span>We build content that compounds. Still earning traffic, trust, and leads twelve months from now.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="about-diff">
+    <div class="section-label">What Makes Us Different</div>
+    <h2 class="section-title">Other Agencies Write. We Think First.</h2>
+    <p class="section-sub">The content landscape is crowded. Here's why we're built differently.</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-num">01</div>
+        <h3>Industry-Specialist Writers</h3>
+        <p>Every brief goes to a writer with genuine expertise in your sector. No generalists winging it. No crash courses at your expense.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-num">02</div>
+        <h3>Strategy Is Always Included</h3>
+        <p>We ask why before we ask what. Every engagement is grounded in strategic thinking, not offered as an expensive add-on.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-num">03</div>
+        <h3>Research You Can Trust</h3>
+        <p>Shallow content is everywhere. We go deep. Industry trends, competitor gaps, audience psychology. All studied before we write.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="expertise-strip">
+    <div class="section-label">Our Expertise</div>
+    <h2 class="section-title">Five Disciplines. One Content Partner.</h2>
+    <div class="expertise-tags">
+      <div class="exp-tag"><span>✍️</span> Journalism & Editorial Writing</div>
+      <div class="exp-tag"><span>🔍</span> Digital Marketing & SEO</div>
+      <div class="exp-tag"><span>🎯</span> Brand Strategy & Consulting</div>
+      <div class="exp-tag"><span>📱</span> Social Media & Content Creation</div>
+      <div class="exp-tag"><span>🏢</span> Corporate Communications</div>
+      <div class="exp-tag"><span>📊</span> Performance-Driven Content</div>
+      <div class="exp-tag"><span>🗞️</span> Thought Leadership</div>
+      <div class="exp-tag"><span>🌐</span> Multi-Industry Storytelling</div>
+    </div>
+  </div>
+
+  <div class="founder-section">
+    <h2>The People Behind the Words</h2>
+    <div class="founder-card" style="max-width:100%;display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:start">
+      <div class="founder-avatar">✦</div>
+      <div class="founder-info">
+        <h3>A Team Built on Craft & Conviction</h3>
+        <div class="role">Content Strategists · Writers · SEO Specialists · Navi Mumbai, MH</div>
+        <p>Senior content professionals, each with deep roots in their craft. Strategists from brand consulting. Writers from journalism and editorial. SEO specialists who've built organic engines for brands across industries.</p>
+        <p style="margin-top:0.8rem;font-size:0.9rem;line-height:1.7;color:#666;font-weight:300">Lean by design. Every client gets senior attention, not junior execution.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="services-hero">
+    <div class="section-label" style="color:rgba(255,255,255,0.7);justify-content:center">What We Do</div>
+    <h1>Content That Works<br>Across Every Format.</h1>
+    <p>Six core services. Every format covered. Every industry understood. All built around one goal: results you can measure.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <span class="service-tag tag-coral">Foundation</span>
+      <span class="service-icon">✍️</span>
+      <h3>Blog & Article Writing</h3>
+      <p>Research-backed articles that build authority, drive organic traffic, and keep readers coming back. Written for people first, optimised for search as a natural second step.</p>
+      <ul class="service-includes">
+        <li>SEO-Optimized Articles</li><li>Thought Leadership Pieces</li><li>Industry Explainers</li><li>How-to Guides</li><li>Guest Post Writing</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <span class="service-tag tag-teal">Growth</span>
+      <span class="service-icon">🔍</span>
+      <h3>SEO Content Strategy</h3>
+      <p>We build holistic content strategies that map keywords to buyer intent, create content clusters, and drive compounding organic growth. No vanity rankings. Only keywords that convert.</p>
+      <ul class="service-includes">
+        <li>Keyword Research</li><li>Content Audits</li><li>Topic Clustering</li><li>On-Page Optimization</li><li>Competitor Analysis</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <span class="service-tag tag-amber">Authority</span>
+      <span class="service-icon">📄</span>
+      <h3>Whitepapers & Reports</h3>
+      <p>High-value, data-rich assets that position your brand as the definitive authority. Perfect for lead generation, investor outreach, and industry credibility.</p>
+      <ul class="service-includes">
+        <li>Industry Research Reports</li><li>B2B Whitepapers</li><li>Annual Trend Reports</li><li>Technical Guides</li><li>eBooks</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <span class="service-tag tag-violet">Social</span>
+      <span class="service-icon">📣</span>
+      <h3>Social Media Content</h3>
+      <p>Platform-native content that stops the scroll. LinkedIn thought leadership, Instagram carousels, X threads. Written for how each platform actually works.</p>
+      <ul class="service-includes">
+        <li>LinkedIn Posts</li><li>Instagram Captions</li><li>Twitter/X Threads</li><li>Content Calendars</li><li>Short-form Video Scripts</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <span class="service-tag tag-sky">Conversion</span>
+      <span class="service-icon">📧</span>
+      <h3>Email & Newsletter Copy</h3>
+      <p>The highest-ROI channel for most businesses. We write sequences, newsletters, and campaigns that open, click, and convert. Written in a voice that feels human, not automated.</p>
+      <ul class="service-includes">
+        <li>Welcome Sequences</li><li>Weekly Newsletters</li><li>Drip Campaigns</li><li>Product Announcements</li><li>Re-engagement Flows</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <span class="service-tag tag-ink">Brand</span>
+      <span class="service-icon">🎙️</span>
+      <h3>Brand Voice & Copywriting</h3>
+      <p>Your brand voice is your greatest differentiator. We develop tone-of-voice guidelines, messaging frameworks, and website copy that makes you instantly recognisable.</p>
+      <ul class="service-includes">
+        <li>Brand Voice Guidelines</li><li>Website Copywriting</li><li>Taglines & Messaging</li><li>Landing Pages</li><li>Ad Copy</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-num">07</div>
+      <span class="service-tag tag-teal">Publishing</span>
+      <span class="service-icon">📚</span>
+      <h3>Publishing Services</h3>
+      <p>From manuscript to market, print and digital. We help authors, brands, and businesses publish work that's polished, positioned, and built to reach the right audience.</p>
+      <ul class="service-includes">
+        <li>Book & Manuscript Editing</li><li>Digital Publishing</li><li>Print Publishing</li><li>eBook Formatting</li><li>Publishing Strategy</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="live-banner">
+    <div class="live-banner-inner">
+      <div class="live-label">
+        <span class="live-dot"></span>
+        Currently Live
+      </div>
+      <p>We're actively taking on clients for these services right now.</p>
+      <div class="live-services">
+        <div class="live-service-pill">📣 Social Media Marketing</div>
+        <div class="live-service-pill">✍️ Content Marketing</div>
+        <div class="live-service-pill">📚 Publishing</div>
+      </div>
+      <a class="live-cta" onclick="showSection('contact')" style="cursor:pointer">Get Started Now →</a>
+    </div>
+  </div>
+
+  <div class="service-process">
+    <div class="section-label" style="color:var(--sage-light)">How We Work</div>
+    <h2 class="section-title" style="color:var(--cream)">Four Steps. No Shortcuts.</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Discovery</h3>
+        <p>We study your brand, audience, competitors, and goals. Nothing gets written without this foundation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Strategy</h3>
+        <p>Topics, formats, cadence, distribution. All mapped to your specific business objectives.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Creation</h3>
+        <p>Specialist writers craft content with deep research, brand voice, and SEO built in from the first draft.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Review & Deliver</h3>
+        <p>Quality checks, your feedback, final approval. On time, every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing">
+  <div class="pricing-hero">
+    <div class="section-label" style="justify-content:center">Transparent Pricing</div>
+    <h1>Plans That Grow<br>With Your Brand.</h1>
+    <p>No hidden fees. No confusing tiers. Choose what fits now and upgrade as you grow.</p>
+  </div>
+
+  <div style="display:flex;justify-content:center;align-items:center;gap:1.2rem;padding:2rem 5rem 0;flex-wrap:wrap">
+    <span style="font-size:0.92rem;font-weight:500;color:#888;transition:color 0.25s" id="label-monthly-main">Monthly</span>
+    <button class="toggle-switch" id="billingToggleMain" onclick="toggleBillingMain()" style="width:52px;height:28px;background:var(--sage-light);border-radius:100px;position:relative;cursor:pointer;transition:background 0.3s;border:none;outline:none;flex-shrink:0">
+      <div id="knob-main" style="width:22px;height:22px;background:white;border-radius:50%;position:absolute;top:3px;left:3px;transition:transform 0.3s;box-shadow:0 2px 6px rgba(0,0,0,0.15)"></div>
+    </button>
+    <span style="font-size:0.92rem;font-weight:600;color:var(--ink)" id="label-annual-main">Annually</span>
+    <span id="annualBadgeMain" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--dusty-rose);color:white;padding:0.3rem 0.85rem;border-radius:100px;font-size:0.75rem;font-weight:700;opacity:0;transition:opacity 0.3s">Save up to 20%</span>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="plan-name">Essential</div>
+      <div class="plan-price">₹<span id="price-essential-main">12,999</span><span style="font-size:1rem;font-weight:400">/mo</span></div>
+      <div style="font-size:0.8rem;color:var(--sage-dark);font-weight:500;min-height:1.2rem;margin-bottom:0.5rem" id="note-essential-main"></div>
+      <div class="plan-price-note">No commitment · Cancel anytime</div>
+      <div class="plan-desc">For brands building their content presence for the first time. Professional, consistent, and strategy-led from day one.</div>
+      <ul class="plan-features">
+        <li>4 SEO Blog Articles (800–1,200 words)</li>
+        <li>8 Social Media Posts (2 platforms)</li>
+        <li>1 Email Newsletter</li>
+        <li>Keyword research & topic planning</li>
+        <li>1 revision round per piece</li>
+        <li>7-day turnaround</li>
+        <li>Dedicated content manager</li>
+      </ul>
+      <a class="btn-plan" onclick="showSection('contact')" style="cursor:pointer;display:block;text-align:center;padding:0.9rem;border-radius:100px;border:2px solid var(--charcoal);background:transparent;font-weight:600;font-size:0.92rem;text-decoration:none;color:var(--charcoal);transition:all 0.3s">Get Started</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-price">₹<span id="price-growth-main">29,999</span><span style="font-size:1rem;font-weight:400">/mo</span></div>
+      <div style="font-size:0.8rem;color:var(--sage-light);font-weight:500;min-height:1.2rem;margin-bottom:0.5rem" id="note-growth-main"></div>
+      <div class="plan-price-note">No commitment · Cancel anytime</div>
+      <div class="plan-desc">For brands ready to build serious authority. Enough volume for momentum, enough strategy to make every piece count.</div>
+      <ul class="plan-features">
+        <li>10 SEO Blog Articles (1,000–1,800 words)</li>
+        <li>20 Social Media Posts (3 platforms)</li>
+        <li>4 Email Newsletters</li>
+        <li>Full SEO content strategy</li>
+        <li>1 Whitepaper or eBook per month</li>
+        <li>2 revision rounds per piece</li>
+        <li>5-day turnaround</li>
+        <li>Priority content manager access</li>
+        <li>Monthly strategy call (45 mins)</li>
+      </ul>
+      <button class="btn-plan-featured" onclick="showSection('contact')" style="cursor:pointer">Get Started →</button>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">Partner</div>
+      <div class="plan-price" style="font-size:2.2rem">Custom</div>
+      <div style="font-size:0.8rem;color:var(--sage-dark);font-weight:500;min-height:1.2rem;margin-bottom:0.5rem">Tailored to your scale</div>
+      <div class="plan-price-note">3-month minimum · Built around you</div>
+      <div class="plan-desc">A fully embedded content operation for businesses that need serious scale without building an in-house team.</div>
+      <ul class="plan-features">
+        <li>Unlimited content production</li>
+        <li>Dedicated specialist team (3–5 writers)</li>
+        <li>Full editorial calendar & strategy</li>
+        <li>Multi-platform social management</li>
+        <li>Video scripts & podcast show notes</li>
+        <li>PR & thought leadership articles</li>
+        <li>Weekly strategy calls</li>
+        <li>Real-time Slack / Teams access</li>
+      </ul>
+      <a class="btn-plan" onclick="showSection('contact')" style="cursor:pointer;display:block;text-align:center;padding:0.9rem;border-radius:100px;border:2px solid var(--charcoal);background:transparent;font-weight:600;font-size:0.92rem;text-decoration:none;color:var(--charcoal)">Talk to Us</a>
+    </div>
+  </div>
+
+  <div class="pricing-note">
+    <h3>💡 Need something in between?</h3>
+    <p>We offer one-off content packages and project-based pricing too. <strong onclick="showSection('contact')" style="cursor:pointer;color:var(--sage-dark)">Get a custom quote</strong>. No strings attached.</p>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section id="portfolio">
+  <div class="portfolio-hero">
+    <div class="section-label" style="color:rgba(255,255,255,0.75)">Our Work</div>
+    <h1>Work That Moves<br>the Needle.</h1>
+    <p>Real briefs. Deliberate strategies. Measurable outcomes. Across industries, formats, and business sizes.</p>
+  </div>
+
+  <div class="portfolio-filter">
+    <button class="filter-btn active" onclick="filterPortfolio(this,'all')">All</button>
+    <button class="filter-btn" onclick="filterPortfolio(this,'tech')">Technology</button>
+    <button class="filter-btn" onclick="filterPortfolio(this,'health')">Healthcare</button>
+    <button class="filter-btn" onclick="filterPortfolio(this,'finance')">Finance</button>
+    <button class="filter-btn" onclick="filterPortfolio(this,'ecom')">E-Commerce</button>
+    <button class="filter-btn" onclick="filterPortfolio(this,'realestate')">Real Estate</button>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-card" data-cat="tech">
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#7aab8a,#4a7a5e)">🤖</div>
+      <div class="pc-body">
+        <div class="pc-industry" style="color:var(--sage-dark)">Technology · SaaS</div>
+        <h3>B2B SaaS Content Ecosystem</h3>
+        <p>Built a 40-article content cluster targeting mid-funnel keywords for an AI productivity tool. Organic demo requests tripled in 4 months.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Blog Strategy</span><span class="pc-tag">SEO Clusters</span><span class="pc-tag">B2B Writing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-cat="health">
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#c98b8b,#d4917f)">💊</div>
+      <div class="pc-body">
+        <div class="pc-industry" style="color:var(--dusty-rose)">Healthcare & Wellness</div>
+        <h3>Wellness Brand Authority Campaign</h3>
+        <p>A 6-month editorial strategy for a nutraceutical brand: whitepapers, expert roundups, and patient stories. It made them the most trusted voice in their niche.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Whitepapers</span><span class="pc-tag">Authority Content</span><span class="pc-tag">Healthcare</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-cat="finance">
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#a3c4b5,#6aab8e)">📊</div>
+      <div class="pc-body">
+        <div class="pc-industry" style="color:var(--sage-dark)">Finance & Fintech</div>
+        <h3>Fintech Newsletter Growth Play</h3>
+        <p>Built a weekly fintech newsletter from scratch. Grew to 8,000+ subscribers in 6 months with a 42% average open rate.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Newsletters</span><span class="pc-tag">Email Marketing</span><span class="pc-tag">Fintech</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-cat="ecom">
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#7aab8a,#a3c4b5)">🛍️</div>
+      <div class="pc-body">
+        <div class="pc-industry" style="color:var(--teal)">E-Commerce & Retail</div>
+        <h3>D2C Brand Social Transformation</h3>
+        <p>Rebuilt a fashion brand's social voice from the ground up. Instagram engagement rate went from 1.2% to 5.8% in 90 days.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Social Media</span><span class="pc-tag">Brand Voice</span><span class="pc-tag">D2C</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-cat="realestate">
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#d4917f,#c8956a)">🏠</div>
+      <div class="pc-body">
+        <div class="pc-industry" style="color:var(--amber)">Real Estate</div>
+        <h3>Real Estate SEO Content Campaign</h3>
+        <p>Hyper-local content strategy for a Navi Mumbai developer. 60+ articles. 180% more organic form submissions in 5 months.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Local SEO</span><span class="pc-tag">Real Estate</span><span class="pc-tag">Landing Pages</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-cat="tech">
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#c8ddd0,#c98b8b)">🎓</div>
+      <div class="pc-body">
+        <div class="pc-industry" style="color:var(--sage-dark)">Education & EdTech</div>
+        <h3>EdTech Thought Leadership Program</h3>
+        <p>Ghostwrote 12 months of LinkedIn content for an EdTech founder. 22,000 new followers. Three speaking invitations. All from content.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">Ghostwriting</span><span class="pc-tag">LinkedIn</span><span class="pc-tag">EdTech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-cta">
+    <h2>Your Brand Could Be Next</h2>
+    <p>We're selectively onboarding new clients. Let's build something worth echoing.</p>
+    <a class="btn-primary" onclick="showSection('contact')" style="cursor:pointer">Start a Conversation →</a>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section id="blog">
+  <div class="blog-hero">
+    <div class="section-label" style="color:rgba(255,255,255,0.7)">The Echo Chamber</div>
+    <h1>Ideas. Insights.<br>Inspiration.</h1>
+    <p>Where we share what we know about content, strategy, and building brands that last.</p>
+  </div>
+
+  <div class="blog-featured">
+    <div class="blog-feat-thumb">📣</div>
+    <div>
+      <div class="blog-cat">Content Strategy · Featured</div>
+      <h2 class="blog-feat-title">Why Most Brand Content Fails (And What to Do Instead)</h2>
+      <div class="blog-meta">
+        <span>By <strong>Eon Echo Team</strong></span>
+        <span>·</span>
+        <span>April 2026</span>
+        <span>·</span>
+        <span>8 min read</span>
+      </div>
+      <p class="blog-feat-excerpt">90% of branded content goes unseen. The remaining 10% that works shares three characteristics most teams never address. Here's what separates content that echoes from content that evaporates.</p>
+      <button class="btn-read">Read Article →</button>
+    </div>
+  </div>
+
+  <div class="blog-grid">
+    <div class="blog-card">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(200,221,208,0.3),rgba(200,149,106,0.15))">✍️</div>
+      <div class="blog-card-body">
+        <div class="blog-cat">SEO Writing</div>
+        <h3>The 2026 Guide to Writing Content That Actually Ranks</h3>
+        <p>Google has evolved. Here's how your content strategy needs to evolve with it.</p>
+        <div class="blog-card-meta">April 8, 2026 · 6 min read</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(106,171,142,0.2),rgba(163,196,181,0.2))">🏭</div>
+      <div class="blog-card-body">
+        <div class="blog-cat" style="color:var(--teal)">B2B Content</div>
+        <h3>How B2B Brands Build Trust Through Thought Leadership</h3>
+        <p>Long sales cycles need content that builds conviction. Here's how it's done.</p>
+        <div class="blog-card-meta">April 10, 2026 · 7 min read</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(201,139,139,0.2),rgba(122,171,138,0.2))">📱</div>
+      <div class="blog-card-body">
+        <div class="blog-cat" style="color:var(--sage-dark)">Social Media</div>
+        <h3>LinkedIn in 2026: The Formats Getting 10x the Organic Reach</h3>
+        <p>We analyzed 500+ posts to find what's working and what's being buried.</p>
+        <div class="blog-card-meta">April 12, 2026 · 5 min read</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(247,212,158,0.25),rgba(244,165,160,0.2))">📧</div>
+      <div class="blog-card-body">
+        <div class="blog-cat" style="color:var(--amber)">Email Marketing</div>
+        <h3>The Newsletter Renaissance: Why Email Is Still Your Best Channel</h3>
+        <p>The only audience you truly own. Here's how to build and use it well.</p>
+        <div class="blog-card-meta">April 14, 2026 · 6 min read</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(163,196,181,0.2),rgba(106,171,142,0.2))">🏥</div>
+      <div class="blog-card-body">
+        <div class="blog-cat" style="color:var(--sage-dark)">Industry Deep-Dive</div>
+        <h3>Healthcare Content: Navigating Compliance Without Killing Creativity</h3>
+        <p>Strict guardrails. Enormous opportunity. Here's how to do both.</p>
+        <div class="blog-card-meta">April 16, 2026 · 9 min read</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,rgba(122,171,138,0.2),rgba(163,196,181,0.2))">🤖</div>
+      <div class="blog-card-body">
+        <div class="blog-cat" style="color:var(--sage-dark)">AI & Content</div>
+        <h3>AI Can Generate. Humans Resonate. Here's the Difference That Matters.</h3>
+        <p>The future belongs to teams who know which is which, and when to use each.</p>
+        <div class="blog-card-meta">April 18, 2026 · 7 min read</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="contact-hero">
+    <div class="section-label" style="color:rgba(255,255,255,0.7);justify-content:center">Let's Talk</div>
+    <h1>Tell Us About Your Brand.<br>We'll Take It From There.</h1>
+    <p>No templates. No scripts. Just a real conversation about what you need and how we can help.</p>
+  </div>
+
+  <div class="contact-body">
+    <div class="contact-info">
+      <h2>We'd Love to Hear From You</h2>
+      <p>Whether you're building from scratch or ready to scale. This is where it starts. Send a message and expect a human response within 24 hours.</p>
+      <ul class="contact-details">
+        <li>
+          <div class="det-icon" style="background:rgba(201,129,122,0.15);color:var(--dusty-rose)">📧</div>
+          <div class="det-text">
+            <strong>Email Us</strong>
+            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c64696060634c696362696f6463616968656d226f6361">[email&#160;protected]</a></span>
+          </div>
+        </li>
+        <li>
+          <div class="det-icon" style="background:rgba(106,171,142,0.15);color:var(--sage-dark)">📍</div>
+          <div class="det-text">
+            <strong>Based In</strong>
+            <span>Navi Mumbai, Maharashtra, India</span>
+          </div>
+        </li>
+        <li>
+          <div class="det-icon" style="background:rgba(200,149,106,0.15);color:var(--amber)">🌐</div>
+          <div class="det-text">
+            <strong>We Serve</strong>
+            <span>Businesses of all sizes, across India and globally</span>
+          </div>
+        </li>
+        <li>
+          <div class="det-icon" style="background:rgba(122,171,138,0.15);color:var(--sage-dark)">⏰</div>
+          <div class="det-text">
+            <strong>Response Time</strong>
+            <span>Within 24 hours on business days</span>
+          </div>
+        </li>
+        <li>
+          <div class="det-icon" style="background:rgba(163,196,181,0.2);color:var(--sage-dark)">🕐</div>
+          <div class="det-text">
+            <strong>Working Hours</strong>
+            <span>Mon – Sat, 9:00 AM – 7:00 PM IST</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send Us a Message</h3>
+      <form action="https://formspree.io/f/xeoqpjbk" method="POST" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" name="name" placeholder="Rahul Sharma" required>
+          </div>
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" name="company" placeholder="Acme Corp">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" name="email" placeholder="rahul@company.com" required>
+        </div>
+        <div class="form-group">
+          <label>Industry</label>
+          <select name="industry">
+            <option value="">Select your industry...</option>
+            <option>Technology & SaaS</option>
+            <option>Healthcare & Wellness</option>
+            <option>Finance & Fintech</option>
+            <option>E-Commerce & Retail</option>
+            <option>Real Estate</option>
+            <option>Education & EdTech</option>
+            <option>Travel & Hospitality</option>
+            <option>Legal & Compliance</option>
+            <option>Fashion & Lifestyle</option>
+            <option>Automotive</option>
+            <option>Food & Beverage</option>
+            <option>Manufacturing & B2B</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>What are you looking for?</label>
+          <select name="service">
+            <option value="">Select a service...</option>
+            <option>Blog & Article Writing</option>
+            <option>SEO Content Strategy</option>
+            <option>Whitepapers & Reports</option>
+            <option>Social Media Content</option>
+            <option>Email & Newsletter Copy</option>
+            <option>Brand Voice & Copywriting</option>
+            <option>Full Content Partnership</option>
+            <option>One-Off Project</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Us More *</label>
+          <textarea name="message" placeholder="Tell us about your brand, your goals, and what you need. The more detail, the better." required></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New Enquiry: Eon Echo Media">
+        <input type="hidden" name="_next" value="">
+        <button type="submit" class="btn-submit" id="submitBtn">Send Message ✉️</button>
+      </form>
+      <div id="formSuccessMsg" style="display:none;text-align:center;padding:2rem">
+        <div style="font-size:3rem">✅</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin:0.8rem 0 0.5rem">Message Received!</h3>
+        <p style="color:#888;font-size:0.9rem;font-weight:300">We'll be in touch within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a onclick="showSection('home')" style="cursor:pointer;display:flex;align-items:center;gap:0.6rem;text-decoration:none">
+        <svg width="28" height="32" viewBox="0 0 28 32" style="flex-shrink:0">
+          <rect x="9" y="1" width="10" height="6" rx="2.5" fill="var(--sage-dark)"/>
+          <path d="M9 6 L9 18 L14 24 L19 18 L19 6 Z" fill="var(--sage)"/>
+          <line x1="14" y1="11" x2="14" y2="24" stroke="var(--cream)" stroke-width="1" stroke-opacity="0.25"/>
+          <circle cx="14" cy="24" r="2" fill="var(--sage-dark)"/>
+          <path d="M3 29 Q8 32 14 29 Q20 26 24 28 Q27 29 26 26" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <div style="display:flex;align-items:baseline;gap:2px">
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--cream);letter-spacing:-0.02em">Eon</span>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--sage);letter-spacing:-0.02em">Echo</span>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--sage-light);letter-spacing:-0.02em">Media</span>
+        </div>
+      </a>
+      <p>Content that resonates. Stories that last. Based in Navi Mumbai, serving businesses across India and the world.</p>
+      <div class="footer-launch">📍 Navi Mumbai, Maharashtra, India</div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a onclick="showSection('services')" style="cursor:pointer">Blog Writing</a></li>
+        <li><a onclick="showSection('services')" style="cursor:pointer">SEO Strategy</a></li>
+        <li><a onclick="showSection('services')" style="cursor:pointer">Whitepapers</a></li>
+        <li><a onclick="showSection('services')" style="cursor:pointer">Social Media</a></li>
+        <li><a onclick="showSection('services')" style="cursor:pointer">Email Marketing</a></li>
+        <li><a onclick="showSection('services')" style="cursor:pointer">Brand Voice</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a onclick="showSection('about')" style="cursor:pointer">About Us</a></li>
+        <li><a onclick="showSection('portfolio')" style="cursor:pointer">Our Work</a></li>
+        <li><a onclick="showSection('blog')" style="cursor:pointer">The Echo Chamber</a></li>
+        <li><a onclick="showSection('pricing')" style="cursor:pointer">Pricing</a></li>
+        <li><a onclick="showSection('contact')" style="cursor:pointer">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Industries</h4>
+      <ul>
+        <li><a>Technology & SaaS</a></li>
+        <li><a>Healthcare</a></li>
+        <li><a>Finance & Fintech</a></li>
+        <li><a>E-Commerce</a></li>
+        <li><a>Real Estate</a></li>
+        <li><a>Education</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Eon Echo Media. All rights reserved. Navi Mumbai, MH, India.</p>
+    <div class="social-links">
+      <a class="social-link" title="LinkedIn">in</a>
+      <a class="social-link" title="Twitter/X">𝕏</a>
+      <a class="social-link" title="Instagram">◎</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 6 + 'px';
+    cursor.style.top = my - 6 + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx - 18) * 0.15;
+    ry += (my - ry - 18) * 0.15;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Section navigation
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Portfolio filter
+  function filterPortfolio(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
+    });
+  }
+
+  // Billing toggle - pricing page
+  let isAnnualMain = false;
+  function toggleBillingMain() {
+    isAnnualMain = !isAnnualMain;
+    const toggle = document.getElementById('billingToggleMain');
+    const knob = document.getElementById('knob-main');
+    const badge = document.getElementById('annualBadgeMain');
+    const lm = document.getElementById('label-monthly-main');
+    const la = document.getElementById('label-annual-main');
+    toggle.style.background = isAnnualMain ? 'var(--sage-dark)' : 'var(--sage-light)';
+    knob.style.transform = isAnnualMain ? 'translateX(24px)' : 'none';
+    badge.style.opacity = isAnnualMain ? '1' : '0';
+    lm.style.color = isAnnualMain ? '#888' : 'var(--ink)';
+    la.style.color = isAnnualMain ? 'var(--ink)' : '#888';
+    document.getElementById('price-essential-main').textContent = isAnnualMain ? '10,399' : '12,999';
+    document.getElementById('price-growth-main').textContent = isAnnualMain ? '23,999' : '29,999';
+    document.getElementById('note-essential-main').textContent = isAnnualMain ? '₹1,24,788 billed annually' : '';
+    document.getElementById('note-growth-main').textContent = isAnnualMain ? '₹2,87,988 billed annually' : '';
+  }
+
+  // Contact form via Formspree
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          document.getElementById('formSuccessMsg').style.display = 'block';
+        } else {
+          btn.textContent =
